@@ -5,6 +5,7 @@
 ### Opción 1: Despliegue con Docker
 
 #### 1.1 Construcción de la imagen Docker
+
 ```bash
 # Construir la imagen
 docker build -t microservicio-canciones:latest .
@@ -14,6 +15,7 @@ docker images | grep microservicio-canciones
 ```
 
 #### 1.2 Ejecutar con Docker
+
 ```bash
 # Ejecutar el contenedor
 docker run -d \
@@ -31,6 +33,7 @@ docker logs microservicio-canciones
 ```
 
 #### 1.3 Ejecutar con Docker Compose
+
 ```bash
 # Iniciar todos los servicios
 docker-compose up -d
@@ -43,6 +46,7 @@ docker-compose down
 ```
 
 #### 1.4 Subir imagen a Docker Hub
+
 ```bash
 # Login a Docker Hub
 docker login
@@ -57,6 +61,7 @@ docker push tu-usuario/microservicio-canciones:latest
 ### Opción 2: Despliegue en Heroku
 
 #### 2.1 Preparación
+
 ```bash
 # Instalar Heroku CLI
 # Crear cuenta en Heroku
@@ -69,6 +74,7 @@ heroku create tu-app-canciones
 ```
 
 #### 2.2 Configuración de variables de entorno
+
 ```bash
 # Configurar variables de entorno en Heroku
 heroku config:set MONGODB_URI="mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0"
@@ -76,6 +82,7 @@ heroku config:set NODE_ENV=production
 ```
 
 #### 2.3 Despliegue
+
 ```bash
 # Inicializar Git (si no existe)
 git init
@@ -92,6 +99,7 @@ git push heroku main
 ### Opción 3: Despliegue en Railway
 
 #### 3.1 Preparación
+
 ```bash
 # Instalar Railway CLI
 npm install -g @railway/cli
@@ -101,6 +109,7 @@ railway login
 ```
 
 #### 3.2 Despliegue
+
 ```bash
 # Inicializar proyecto
 railway init
@@ -116,6 +125,7 @@ railway up
 ### Opción 4: Despliegue en Render
 
 #### 4.1 Configuración en Render.com
+
 1. Crear cuenta en Render.com
 2. Conectar repositorio de GitHub
 3. Configurar las siguientes variables de entorno:
@@ -123,12 +133,14 @@ railway up
    - `NODE_ENV`: production
 
 #### 4.2 Configuración de Build
+
 - Build Command: `npm install`
 - Start Command: `npm start`
 
 ### Opción 5: Despliegue en DigitalOcean App Platform
 
 #### 5.1 Configuración
+
 1. Crear cuenta en DigitalOcean
 2. Ir a App Platform
 3. Conectar repositorio de GitHub
@@ -138,6 +150,7 @@ railway up
 ### Opción 6: Despliegue en AWS EC2
 
 #### 6.1 Configuración de EC2
+
 ```bash
 # Conectar a la instancia EC2
 ssh -i tu-key.pem ec2-user@tu-instancia.amazonaws.com
@@ -161,6 +174,7 @@ nano .env
 ```
 
 #### 6.2 Configuración con PM2
+
 ```bash
 # Crear archivo ecosystem.config.js
 cat > ecosystem.config.js << EOF
@@ -190,6 +204,7 @@ pm2 save
 ## Configuración de Proxy Reverso (Nginx)
 
 ### Instalación y configuración de Nginx
+
 ```bash
 # Instalar Nginx
 sudo apt update
@@ -200,6 +215,7 @@ sudo nano /etc/nginx/sites-available/microservicio-canciones
 ```
 
 ### Configuración de Nginx
+
 ```nginx
 server {
     listen 80;
@@ -220,6 +236,7 @@ server {
 ```
 
 ### Activar el sitio
+
 ```bash
 # Crear enlace simbólico
 sudo ln -s /etc/nginx/sites-available/microservicio-canciones /etc/nginx/sites-enabled/
@@ -248,6 +265,7 @@ sudo crontab -e
 ## Monitoreo y Logs
 
 ### Configuración de logs con PM2
+
 ```bash
 # Ver logs en tiempo real
 pm2 logs microservicio-canciones
@@ -260,6 +278,7 @@ pm2 install pm2-logrotate
 ```
 
 ### Health Checks
+
 ```bash
 # Script de health check
 cat > health_check.sh << 'EOF'

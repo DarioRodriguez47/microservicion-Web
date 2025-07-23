@@ -1,0 +1,37 @@
+CONFIGURACIÓN DE VARIABLES DE ENTORNO PARA RENDER.COM
+========================================================
+
+Variable 1:
+NAME_OF_VARIABLE: MONGODB_URI
+value: mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0
+
+Variable 2:
+NAME_OF_VARIABLE: NODE_ENV
+value: production
+
+Variable 3:
+NAME_OF_VARIABLE: PORT
+value: 3000
+
+PASOS PARA EL DESPLIEGUE:
+========================
+1. Cambiar Language de Docker a Node
+2. Agregar las 3 variables de entorno arriba mencionadas
+3. Click "Deploy web service"
+
+NOTAS IMPORTANTES:
+==================
+- Asegúrate de que el repositorio GitHub "microservicion-Web" esté seleccionado
+- La aplicación se desplegará automáticamente cuando hagas los cambios
+- Una vez desplegado, obtendrás una URL pública para probar tu microservicio
+- Puedes usar esta URL con Postman para probar todos los endpoints CRUD
+
+ENDPOINTS DISPONIBLES DESPUÉS DEL DESPLIEGUE:
+=============================================
+GET    https://tu-app.onrender.com/api/songs         - Obtener todas las canciones
+POST   https://tu-app.onrender.com/api/songs         - Crear nueva canción
+GET    https://tu-app.onrender.com/api/songs/:id     - Obtener canción por ID
+PUT    https://tu-app.onrender.com/api/songs/:id     - Actualizar canción completa
+PATCH  https://tu-app.onrender.com/api/songs/:id     - Actualizar canción parcial
+DELETE https://tu-app.onrender.com/api/songs/:id     - Eliminar canción
+GET    https://tu-app.onrender.com/health            - Health check

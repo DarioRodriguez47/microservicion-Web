@@ -1,11 +1,14 @@
 {
   "name": "microservicio-canciones",
-  "version": "1.0.0",
-  "description": "Microservicio CRUD para gestión de canciones",
+  "version": "2.0.0",
+  "description": "Microservicio CRUD para gestión de canciones - Arquitectura profesional refactorizada",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start:legacy": "node server-legacy.js",
+    "dev:legacy": "nodemon server-legacy.js",
+    "test": "bash test_api.sh"
   },
   "dependencies": {
     "express": "^4.18.2",

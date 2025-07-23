@@ -1,9 +1,11 @@
 # Microservicio CRUD Canciones
 
 ## Descripción
+
 Microservicio desarrollado con Node.js y Express para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una tabla de canciones utilizando MongoDB Atlas como base de datos.
 
 ## Tecnologías Utilizadas
+
 - **Lenguaje**: JavaScript (Node.js)
 - **Framework**: Express.js
 - **Base de datos**: MongoDB Atlas
@@ -15,6 +17,7 @@ Microservicio desarrollado con Node.js y Express para realizar operaciones CRUD 
   - nodemon: Herramienta de desarrollo para reinicio automático
 
 ## Estructura del Proyecto
+
 ```
 microservicio-canciones/
 ├── server.js              # Archivo principal del servidor
@@ -28,6 +31,7 @@ microservicio-canciones/
 ## Configuración
 
 ### Variables de Entorno (.env)
+
 ```env
 MONGODB_URI=mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0
 PORT=3000
@@ -37,6 +41,7 @@ APP_VERSION=1.0.0
 ```
 
 ### Instalación
+
 ```bash
 # Clonar o descargar el proyecto
 cd microservicio-canciones
@@ -54,6 +59,7 @@ npm start
 ## API Endpoints
 
 ### Base URL
+
 ```
 http://localhost:3000
 ```
@@ -61,22 +67,29 @@ http://localhost:3000
 ### Endpoints Disponibles
 
 #### 1. GET / - Información del API
+
 ```http
 GET /
 ```
+
 **Respuesta**: Información general del microservicio y endpoints disponibles.
 
 #### 2. GET /health - Estado del servicio
+
 ```http
 GET /health
 ```
+
 **Respuesta**: Estado de salud del microservicio y conexión a la base de datos.
 
 #### 3. GET /api/songs - Obtener todas las canciones
+
 ```http
 GET /api/songs
 ```
+
 **Respuesta**:
+
 ```json
 {
   "success": true,
@@ -95,10 +108,13 @@ GET /api/songs
 ```
 
 #### 4. GET /api/songs/:id - Obtener canción por ID
+
 ```http
 GET /api/songs/64f8a2b5c9e8b1234567890a
 ```
+
 **Respuesta**:
+
 ```json
 {
   "success": true,
@@ -114,6 +130,7 @@ GET /api/songs/64f8a2b5c9e8b1234567890a
 ```
 
 #### 5. POST /api/songs - Crear nueva canción
+
 ```http
 POST /api/songs
 Content-Type: application/json
@@ -124,7 +141,9 @@ Content-Type: application/json
   "plays": 0
 }
 ```
+
 **Respuesta**:
+
 ```json
 {
   "success": true,
@@ -141,6 +160,7 @@ Content-Type: application/json
 ```
 
 #### 6. PUT /api/songs/:id - Actualizar canción completa
+
 ```http
 PUT /api/songs/64f8a2b5c9e8b1234567890a
 Content-Type: application/json
@@ -153,6 +173,7 @@ Content-Type: application/json
 ```
 
 #### 7. PATCH /api/songs/:id - Actualizar canción parcialmente
+
 ```http
 PATCH /api/songs/64f8a2b5c9e8b1234567890a
 Content-Type: application/json
@@ -163,10 +184,13 @@ Content-Type: application/json
 ```
 
 #### 8. DELETE /api/songs/:id - Eliminar canción
+
 ```http
 DELETE /api/songs/64f8a2b5c9e8b1234567890a
 ```
+
 **Respuesta**:
+
 ```json
 {
   "success": true,
@@ -186,6 +210,7 @@ DELETE /api/songs/64f8a2b5c9e8b1234567890a
 ## Modelo de Datos
 
 ### Esquema de Canción
+
 ```javascript
 {
   _id: ObjectId,        // ID único generado por MongoDB
@@ -198,10 +223,11 @@ DELETE /api/songs/64f8a2b5c9e8b1234567890a
 ```
 
 ### Validaciones
+
 - **name**: Requerido, no puede estar vacío, debe ser único
 - **path**: Requerido, no puede estar vacío
 - **plays**: Opcional, debe ser un número >= 0, default: 0
-- **_id**: Debe ser un ObjectId válido de MongoDB para operaciones de lectura, actualización y eliminación
+- **\_id**: Debe ser un ObjectId válido de MongoDB para operaciones de lectura, actualización y eliminación
 
 ## Códigos de Estado HTTP
 
@@ -215,6 +241,7 @@ DELETE /api/songs/64f8a2b5c9e8b1234567890a
 ## Manejo de Errores
 
 Todas las respuestas de error siguen el siguiente formato:
+
 ```json
 {
   "success": false,
@@ -225,6 +252,7 @@ Todas las respuestas de error siguen el siguiente formato:
 ## Pruebas con Postman
 
 ### Colección de Pruebas
+
 1. **GET All Songs**: `GET http://localhost:3000/api/songs`
 2. **GET Song by ID**: `GET http://localhost:3000/api/songs/:id`
 3. **CREATE Song**: `POST http://localhost:3000/api/songs`
@@ -234,6 +262,7 @@ Todas las respuestas de error siguen el siguiente formato:
 7. **Health Check**: `GET http://localhost:3000/health`
 
 ### Headers Requeridos
+
 ```
 Content-Type: application/json
 ```
@@ -241,11 +270,13 @@ Content-Type: application/json
 ## Desarrollo Local
 
 ### Prerrequisitos
+
 - Node.js (v14 o superior)
 - npm o yarn
 - Acceso a MongoDB Atlas
 
 ### Comandos de Desarrollo
+
 ```bash
 # Desarrollo con recarga automática
 npm run dev
@@ -263,6 +294,7 @@ npm audit
 ## Logs y Monitoreo
 
 El servidor incluye logging detallado:
+
 - Todas las peticiones HTTP con timestamp
 - Operaciones de base de datos
 - Errores con stack trace
