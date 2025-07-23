@@ -1,64 +1,170 @@
 # Guía de Despliegue - Microservicio CRUD Canciones
 
-## Opciones de Despliegue
+## Opciones de Despliegue Disponibles
 
-### Opción 1: Despliegue con Docker
+### ✅ Opción 1: Render.com (IMPLEMENTADA)
 
-#### 1.1 Construcción de la imagen Docker
+Esta es la opción que hemos implementado y está funcionando.
 
-```bash
-# Construir la imagen
-docker build -t microservicio-canciones:latest .
+#### 1.1 Configuración en Render.com
 
-# Verificar que la imagen se creó correctamente
-docker images | grep microservicio-canciones
+1. **Conectar repositorio GitHub**: `DarioRodriguez47/microservicion-Web`
+2. **Configurar Build Settings**:
+   - **Language**: Node
+   - **Branch**: main
+   - **Build Command**: `npm install`
+   - **Start Command**: `node server.js`
+
+#### 1.2 Variables de entorno requeridas
+
+```
+MONGODB_URI=mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0
+NODE_ENV=production
+PORT=3000
 ```
 
-#### 1.2 Ejecutar con Docker
+#### 1.3 URL de despliegue
 
-```bash
-# Ejecutar el contenedor
-docker run -d \
-  --name microservicio-canciones \
-  -p 3000:3000 \
-  -e MONGODB_URI="mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0" \
-  -e NODE_ENV=production \
-  microservicio-canciones:latest
-
-# Verificar que el contenedor está ejecutándose
-docker ps
-
-# Ver los logs del contenedor
-docker logs microservicio-canciones
+```
+https://microservicion-web.onrender.com
 ```
 
-#### 1.3 Ejecutar con Docker Compose
+### 🔄 Opción 2: Heroku (Alternativa)
+
+#### 2.1 Preparación
 
 ```bash
-# Iniciar todos los servicios
-docker-compose up -d
+# Instalar Heroku CLI
+npm install -g heroku
 
-# Ver los logs
-docker-compose logs -f
+# Login a Heroku
+heroku login
 
-# Detener los servicios
-docker-compose down
+# Crear aplicación
+heroku create tu-app-canciones
 ```
 
-#### 1.4 Subir imagen a Docker Hub
+#### 2.2 Configuración de variables de entorno
 
 ```bash
-# Login a Docker Hub
-docker login
-
-# Etiquetar la imagen
-docker tag microservicio-canciones:latest tu-usuario/microservicio-canciones:latest
-
-# Subir la imagen
-docker push tu-usuario/microservicio-canciones:latest
+heroku config:set MONGODB_URI="mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0"
+heroku config:set NODE_ENV=production
 ```
 
-### Opción 2: Despliegue en Heroku
+#### 2.3 Despliegue
+
+```bash
+# Desplegar
+git push heroku main
+
+# Ver logs
+heroku logs --tail
+```
+
+### 🚀 Opción 3: Railway (Alternativa)
+
+#### 3.1 Configuración
+
+1. Conectar repositorio en railway.app
+2. Configurar variables de entorno
+3. Despliegue automático desde GitHub
+
+#### 3.2 Variables de entorno
+
+```
+MONGODB_URI=mongodb+srv://admin:admin123@cluster0.vw5pr.mongodb.net/canciones_db?retryWrites=true&w=majority&appName=Cluster0
+NODE_ENV=production
+```
+
+### 🔧 Opción 4: Vercel (Para APIs)
+
+#### 4.1 Configuración
+
+```bash
+# Instalar Vercel CLI
+npm install -g vercel
+
+# Login
+vercel login
+
+# Desplegar
+vercel
+```
+
+#### 4.2 Archivo vercel.json
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
+}
+```
+
+## 🧪 Testing en Producción
+
+### Endpoints disponibles
+
+```
+GET  https://tu-dominio.com/api/health
+GET  https://tu-dominio.com/api/songs
+POST https://tu-dominio.com/api/songs
+PUT  https://tu-dominio.com/api/songs/:id
+PATCH https://tu-dominio.com/api/songs/:id
+DELETE https://tu-dominio.com/api/songs/:id
+```
+
+### Prueba con cURL
+
+```bash
+# Health check
+curl https://microservicion-web.onrender.com/api/health
+
+# Obtener canciones
+curl https://microservicion-web.onrender.com/api/songs
+
+# Crear canción
+curl -X POST https://microservicion-web.onrender.com/api/songs \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test Song","path":"/test/song.mp3","plays":0}'
+```
+
+## 📊 Monitoreo y Logs
+
+### Render.com
+
+- Logs disponibles en dashboard
+- Métricas de performance automáticas
+- Health checks automáticos
+
+### Heroku
+
+```bash
+heroku logs --tail
+heroku ps:scale web=1
+```
+
+### General
+
+- MongoDB Atlas: Métricas en dashboard
+- Postman: Pruebas automatizadas
+- Scripts de testing incluidos
+
+---
+
+**Estado actual**: ✅ Desplegado exitosamente en Render.com  
+**URL**: https://microservicion-web.onrender.com  
+**Última actualización**: 23 de Julio de 2025
 
 #### 2.1 Preparación
 

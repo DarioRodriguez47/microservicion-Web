@@ -315,5 +315,5 @@ El servidor incluye logging detallado:
 - Rate limiting
 - Documentación con Swagger
 - Tests unitarios e integración
-- Docker containerization
 - CI/CD pipeline
+- Monitoreo y métricas

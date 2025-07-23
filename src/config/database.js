@@ -11,7 +11,7 @@ class DatabaseConfig {
   async connect() {
     try {
       console.log("🔄 Conectando a MongoDB...");
-      
+
       this.client = new MongoClient(process.env.MONGODB_URI);
       await this.client.connect();
 
@@ -24,7 +24,7 @@ class DatabaseConfig {
 
       // Crear índice para optimizar consultas
       await this.songsCollection.createIndex({ name: 1 });
-      
+
       return { db: this.db, songsCollection: this.songsCollection };
     } catch (error) {
       console.error("❌ Error al conectar con MongoDB:", error);
@@ -35,7 +35,7 @@ class DatabaseConfig {
   getDatabase() {
     return {
       db: this.db,
-      songsCollection: this.songsCollection
+      songsCollection: this.songsCollection,
     };
   }
 

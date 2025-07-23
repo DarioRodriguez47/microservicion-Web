@@ -54,7 +54,6 @@ Desarrollar un microservicio completo con operaciones CRUD para la gestión de c
 - **Git**: Control de versiones
 - **GitHub**: Repositorio remoto
 - **Render.com**: Plataforma de despliegue cloud
-- **Docker**: Containerización (opcional)
 
 ---
 
@@ -69,8 +68,6 @@ microservicio-canciones/
 ├── .env                        # Variables de entorno
 ├── .gitignore                  # Archivos excluidos de Git
 ├── README.md                   # Documentación
-├── Dockerfile                  # Configuración de Docker
-├── docker-compose.yml          # Orquestación de contenedores
 ├── postman_collection.json     # Colección de pruebas
 └── render-deployment-variables.txt # Variables de despliegue
 ```
@@ -540,14 +537,7 @@ La colección completa de pruebas está disponible en:
 Archivo con configuración completa:
 `render-deployment-variables.txt`
 
-### Anexo C: Configuración Docker
-
-Para desarrollo con contenedores:
-
-- `Dockerfile`
-- `docker-compose.yml`
-
-### Anexo D: Logs de Despliegue
+### Anexo C: Logs de Despliegue
 
 Logs completos del proceso de despliegue en Render.com disponibles en la plataforma.
 

@@ -27,11 +27,11 @@ class SongService {
 
     const collection = this._getCollection();
     const song = await collection.findOne({ _id: new ObjectId(id) });
-    
+
     if (!song) {
       throw new Error("Canción no encontrada");
     }
-    
+
     return song;
   }
 
@@ -66,7 +66,7 @@ class SongService {
 
     // Insertar en BD
     const result = await collection.insertOne(newSong);
-    
+
     // Retornar canción creada
     return await collection.findOne({ _id: result.insertedId });
   }
@@ -164,7 +164,9 @@ class SongService {
 
     if (plays !== undefined) {
       if (typeof plays !== "number" || plays < 0) {
-        throw new Error('El campo "plays" debe ser un número mayor o igual a 0');
+        throw new Error(
+          'El campo "plays" debe ser un número mayor o igual a 0'
+        );
       }
       updateFields.plays = parseInt(plays);
     }

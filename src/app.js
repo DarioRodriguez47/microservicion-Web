@@ -30,10 +30,10 @@ app.get("/", (req, res) => {
     documentation: {
       endpoints: "/api",
       health: "/api/health",
-      songs: "/api/songs"
+      songs: "/api/songs",
     },
     developer: "Darío Rodríguez",
-    course: "Desarrollo Web Avanzado"
+    course: "Desarrollo Web Avanzado",
   });
 });
 
@@ -47,8 +47,8 @@ app.use("*", (req, res) => {
       "GET /": "Información del microservicio",
       "GET /api": "Información de la API",
       "GET /api/health": "Estado del servicio",
-      "GET /api/songs": "Gestión de canciones"
-    }
+      "GET /api/songs": "Gestión de canciones",
+    },
   });
 });
 
