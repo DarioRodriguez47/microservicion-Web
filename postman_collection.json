@@ -1,0 +1,197 @@
+{
+  "info": {
+    "name": "Microservicio CRUD Canciones",
+    "description": "Colección de pruebas para el microservicio de canciones",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "API Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"]
+        }
+      }
+    },
+    {
+      "name": "GET All Songs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/songs",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs"]
+        }
+      }
+    },
+    {
+      "name": "POST Create Song",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Imagine\",\n  \"path\": \"/music/john-lennon/imagine.mp3\",\n  \"plays\": 0\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/songs",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs"]
+        }
+      }
+    },
+    {
+      "name": "POST Create Song 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Hotel California\",\n  \"path\": \"/music/eagles/hotel-california.mp3\",\n  \"plays\": 2500\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/songs",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs"]
+        }
+      }
+    },
+    {
+      "name": "GET Song by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/songs/{{song_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs", "{{song_id}}"]
+        }
+      }
+    },
+    {
+      "name": "PUT Update Song Complete",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Imagine (Remastered)\",\n  \"path\": \"/music/john-lennon/imagine-remastered.mp3\",\n  \"plays\": 1000\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/songs/{{song_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs", "{{song_id}}"]
+        }
+      }
+    },
+    {
+      "name": "PATCH Update Song Partial",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"plays\": 1500\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/songs/{{song_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs", "{{song_id}}"]
+        }
+      }
+    },
+    {
+      "name": "DELETE Song",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/songs/{{song_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs", "{{song_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Error Cases - Invalid ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/songs/invalid_id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs", "invalid_id"]
+        }
+      }
+    },
+    {
+      "name": "Error Cases - Missing Fields",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Song\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/songs",
+          "host": ["{{base_url}}"],
+          "path": ["api", "songs"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "song_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
